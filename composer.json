@@ -1,0 +1,27 @@
+{
+    "name": "desa/tabalagan",
+    "description": "Master Template Website Desa - CodeIgniter 4 + MySQL",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "ext-intl": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helpers/desa_helper.php"
+        ]
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "@php spark setup"
+        ]
+    },
+    "support": {
+        "docs": "README.md"
+    }
+}
