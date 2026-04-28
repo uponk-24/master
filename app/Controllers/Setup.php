@@ -30,7 +30,7 @@ class Setup extends BaseController
         return '✅ Setup berhasil! Akun admin telah dibuat.<br>
                 Username: <strong>admin</strong><br>
                 Password: <strong>admin123</strong><br><br>
-                Silakan login di <a href="/admin/login">/admin/login</a><br><br>
+                Silakan login di <a href="' . site_url('admin/login') . '">halaman login</a><br><br>
                 <small>⚠️ Segera ubah password setelah login pertama!</small>';
     }
 }

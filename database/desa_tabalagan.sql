@@ -195,9 +195,10 @@ CREATE TABLE IF NOT EXISTS `contact_messages` (
 -- SEED DATA - Ganti sesuai data desa Anda
 -- ============================================================
 
--- Admin: Akses /setup setelah deploy untuk membuat akun admin
--- Atau jalankan: php spark db:seed AdminSeeder
--- Default: username=admin, password=admin123
+-- Admin: username=admin, password=admin123
+-- Password di-hash dengan bcrypt. Jalankan /setup jika ingin membuat ulang.
+INSERT IGNORE INTO `admins` (`id`, `username`, `password`, `name`) VALUES
+('admin-1', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator Desa');
 
 -- Profil Desa
 INSERT IGNORE INTO `village_profiles` (`id`, `name`, `motto`, `description`, `history`, `vision`, `mission`, `area_size`, `population`, `family_count`, `hamlets`, `district`, `regency`, `province`, `phone`, `email`, `address`, `postal_code`, `latitude`, `longitude`, `logo_url`) VALUES
