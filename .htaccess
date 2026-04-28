@@ -1,5 +1,6 @@
 # Root .htaccess - Redirect semua request ke public/
-# Jika document root sudah mengarah ke public/, HAPUS file ini
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public/
+RewriteRule ^$ public/ [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/$1 [L]
