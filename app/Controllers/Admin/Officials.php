@@ -40,20 +40,20 @@ class Officials extends BaseController
         }
 
         $this->model->insert($data);
-        return redirect()->to('/admin/perangkat')->with('success', 'Perangkat desa berhasil ditambahkan');
+        return redirect()->to(site_url('admin/perangkat'))->with('success', 'Perangkat desa berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['official'] = $this->model->find($id);
-        if (!$data['official']) return redirect()->to('/admin/perangkat')->with('error', 'Data tidak ditemukan');
+        if (!$data['official']) return redirect()->to(site_url('admin/perangkat'))->with('error', 'Data tidak ditemukan');
         return view('admin/officials_form', $data);
     }
 
     public function update(string $id)
     {
         $official = $this->model->find($id);
-        if (!$official) return redirect()->to('/admin/perangkat')->with('error', 'Data tidak ditemukan');
+        if (!$official) return redirect()->to(site_url('admin/perangkat'))->with('error', 'Data tidak ditemukan');
 
         $data = [
             'name' => sanitize_input($this->request->getPost('name')),
@@ -72,7 +72,7 @@ class Officials extends BaseController
         }
 
         $this->model->update($id, $data);
-        return redirect()->to('/admin/perangkat')->with('success', 'Perangkat desa berhasil diperbarui');
+        return redirect()->to(site_url('admin/perangkat'))->with('success', 'Perangkat desa berhasil diperbarui');
     }
 
     public function delete(string $id)
@@ -80,6 +80,6 @@ class Officials extends BaseController
         $official = $this->model->find($id);
         if ($official && !empty($official['photo_url'])) delete_file($official['photo_url']);
         $this->model->delete($id);
-        return redirect()->to('/admin/perangkat')->with('success', 'Perangkat desa berhasil dihapus');
+        return redirect()->to(site_url('admin/perangkat'))->with('success', 'Perangkat desa berhasil dihapus');
     }
 }

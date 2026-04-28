@@ -21,8 +21,8 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="/css/custom.css">
-    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="<?= base_url('css/custom.css') ?>">
+    <link rel="icon" href="<?= base_url('img/logo.svg') ?>" type="image/svg+xml">
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
@@ -47,9 +47,9 @@
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <nav class="flex justify-center items-center gap-2 text-sm text-white/60 mb-6">
-            <a href="/" class="hover:text-white transition-colors">Beranda</a>
+            <a href="<?= site_url('/') ?>" class="hover:text-white transition-colors">Beranda</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="/#berita" class="hover:text-white transition-colors">Berita</a>
+            <a href="<?= site_url('/') ?>#berita" class="hover:text-white transition-colors">Berita</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             <span class="text-white/90"><?= esc($article['category'] ?? 'Berita') ?></span>
         </nav>
@@ -105,7 +105,7 @@
 
                 <!-- Back link -->
                 <div class="mt-6">
-                    <a href="/#berita" class="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+                    <a href="<?= site_url('/') ?>#berita" class="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-dark font-medium transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         Kembali ke Berita
                     </a>
@@ -120,7 +120,7 @@
                     <div class="space-y-3">
                         <?php foreach ($recent as $r): ?>
                         <?php if (($r['id'] ?? '') !== ($article['id'] ?? '')): ?>
-                        <a href="/berita/<?= $r['id'] ?>" class="block group p-3 rounded-xl hover:bg-white hover:shadow-sm transition-all">
+                        <a href="<?= site_url('berita/' . $r['id']) ?>" class="block group p-3 rounded-xl hover:bg-white hover:shadow-sm transition-all">
                             <p class="text-xs text-gray-400 mb-1"><?= format_date_id($r['date'] ?? $r['created_at'] ?? '') ?></p>
                             <h4 class="text-sm font-medium text-gray-800 group-hover:text-primary transition-colors line-clamp-2 leading-snug"><?= esc($r['title']) ?></h4>
                             <?php if (!empty($r['category'])): ?>
@@ -130,7 +130,7 @@
                         <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
-                    <a href="/#berita" class="block text-center text-sm text-primary font-medium mt-4 pt-3 border-t border-gray-200 hover:underline">Lihat Semua Berita &rarr;</a>
+                    <a href="<?= site_url('/') ?>#berita" class="block text-center text-sm text-primary font-medium mt-4 pt-3 border-t border-gray-200 hover:underline">Lihat Semua Berita &rarr;</a>
                 </div>
             </div>
         </div>
@@ -138,6 +138,6 @@
 </section>
 
 <?= $this->include('components/footer') ?>
-<script src="/js/app.js"></script>
+<script src="<?= base_url('js/app.js') ?>"></script>
 </body>
 </html>

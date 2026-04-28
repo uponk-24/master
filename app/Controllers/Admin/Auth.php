@@ -9,7 +9,7 @@ class Auth extends BaseController
 {
     public function login()
     {
-        if (session()->get('admin_logged_in')) return redirect()->to('/admin/dashboard');
+        if (session()->get('admin_logged_in')) return redirect()->to(site_url('admin/dashboard'));
         return view('admin/login');
     }
 
@@ -28,7 +28,7 @@ class Auth extends BaseController
                 'admin_id'       => $admin['id'],
                 'admin_name'     => $admin['name'],
             ]);
-            return redirect()->to('/admin/dashboard')->with('success', 'Selamat datang, ' . $admin['name']);
+            return redirect()->to(site_url('admin/dashboard'))->with('success', 'Selamat datang, ' . $admin['name']);
         }
 
         return redirect()->back()->withInput()->with('error', 'Username atau password salah');
@@ -37,6 +37,6 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/admin/login')->with('success', 'Berhasil logout');
+        return redirect()->to(site_url('admin/login'))->with('success', 'Berhasil logout');
     }
 }

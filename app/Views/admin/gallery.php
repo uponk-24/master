@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Galeri Desa</h1>
-    <a href="/admin/galeri/tambah" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
+    <a href="<?= site_url('admin/galeri/tambah') ?>" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
 </div>
 <?= alert_message() ?>
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -19,8 +19,8 @@
             <p class="font-medium text-sm truncate"><?= esc($g['title']) ?></p>
             <p class="text-xs text-gray-400"><?= esc($g['category']) ?></p>
             <div class="flex gap-2 mt-2">
-                <a href="/admin/galeri/edit/<?= $g['id'] ?>" class="text-primary hover:underline text-xs">Edit</a>
-                <form action="/admin/galeri/hapus/<?= $g['id'] ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-red-500 hover:underline text-xs">Hapus</button></form>
+                <a href="<?= site_url('admin/galeri/edit/' . $g['id']) ?>" class="text-primary hover:underline text-xs">Edit</a>
+                <form action="<?= site_url('admin/galeri/hapus/' . $g['id']) ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-red-500 hover:underline text-xs">Hapus</button></form>
             </div>
         </div>
     </div>

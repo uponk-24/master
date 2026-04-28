@@ -34,13 +34,13 @@ class Services extends BaseController
             'order_num' => (int)$this->request->getPost('order_num'),
             'is_active' => $this->request->getPost('is_active') ? 1 : 0,
         ]);
-        return redirect()->to('/admin/layanan')->with('success', 'Layanan berhasil ditambahkan');
+        return redirect()->to(site_url('admin/layanan'))->with('success', 'Layanan berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['service'] = $this->model->find($id);
-        if (!$data['service']) return redirect()->to('/admin/layanan')->with('error', 'Data tidak ditemukan');
+        if (!$data['service']) return redirect()->to(site_url('admin/layanan'))->with('error', 'Data tidak ditemukan');
         return view('admin/services_form', $data);
     }
 
@@ -55,12 +55,12 @@ class Services extends BaseController
             'order_num' => (int)$this->request->getPost('order_num'),
             'is_active' => $this->request->getPost('is_active') ? 1 : 0,
         ]);
-        return redirect()->to('/admin/layanan')->with('success', 'Layanan berhasil diperbarui');
+        return redirect()->to(site_url('admin/layanan'))->with('success', 'Layanan berhasil diperbarui');
     }
 
     public function delete(string $id)
     {
         $this->model->delete($id);
-        return redirect()->to('/admin/layanan')->with('success', 'Layanan berhasil dihapus');
+        return redirect()->to(site_url('admin/layanan'))->with('success', 'Layanan berhasil dihapus');
     }
 }

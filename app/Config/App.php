@@ -15,8 +15,35 @@ class App extends BaseConfig
      * WITH a trailing slash:
      *
      * E.g., http://example.com/
+     *
+     * AUTO-DETECT: baseURL akan otomatis terdeteksi dari URL yang diakses.
+     * Jika Anda ingin manual, set di file .env: app.baseURL = 'http://domain.com/'
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public string $baseURL = 'http://localhost/';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Auto-detect baseURL dari SCRIPT_NAME
+        // Ini memastikan URL benar baik di subfolder maupun root domain
+        // Contoh: /master/public/index.php → baseURL = http://localhost/master/
+        // Contoh: /public/index.php → baseURL = http://localhost/
+        if (isset($_SERVER['HTTP_HOST']) && isset($_SERVER['SCRIPT_NAME'])) {
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+            $host     = $_SERVER['HTTP_HOST'];
+            $script   = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+
+            // Hapus /index.php dan /public dari path
+            $basePath = dirname($script);
+            $basePath = preg_replace('#/public$#', '', $basePath);
+            if ($basePath === '.' || $basePath === '/' || $basePath === '\\') {
+                $basePath = '';
+            }
+
+            $this->baseURL = rtrim($protocol . '://' . $host . $basePath, '/') . '/';
+        }
+    }
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

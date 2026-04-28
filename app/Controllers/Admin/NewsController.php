@@ -42,20 +42,20 @@ class NewsController extends BaseController
         }
 
         $this->model->insert($data);
-        return redirect()->to('/admin/berita')->with('success', 'Berita berhasil ditambahkan');
+        return redirect()->to(site_url('admin/berita'))->with('success', 'Berita berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['article'] = $this->model->find($id);
-        if (!$data['article']) return redirect()->to('/admin/berita')->with('error', 'Data tidak ditemukan');
+        if (!$data['article']) return redirect()->to(site_url('admin/berita'))->with('error', 'Data tidak ditemukan');
         return view('admin/news_form', $data);
     }
 
     public function update(string $id)
     {
         $article = $this->model->find($id);
-        if (!$article) return redirect()->to('/admin/berita')->with('error', 'Data tidak ditemukan');
+        if (!$article) return redirect()->to(site_url('admin/berita'))->with('error', 'Data tidak ditemukan');
 
         $data = [
             'title' => sanitize_input($this->request->getPost('title')),
@@ -76,7 +76,7 @@ class NewsController extends BaseController
         }
 
         $this->model->update($id, $data);
-        return redirect()->to('/admin/berita')->with('success', 'Berita berhasil diperbarui');
+        return redirect()->to(site_url('admin/berita'))->with('success', 'Berita berhasil diperbarui');
     }
 
     public function delete(string $id)
@@ -84,6 +84,6 @@ class NewsController extends BaseController
         $article = $this->model->find($id);
         if ($article && !empty($article['image_url'])) delete_file($article['image_url']);
         $this->model->delete($id);
-        return redirect()->to('/admin/berita')->with('success', 'Berita berhasil dihapus');
+        return redirect()->to(site_url('admin/berita'))->with('success', 'Berita berhasil dihapus');
     }
 }

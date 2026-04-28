@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 lg:h-18">
             <!-- Logo -->
-            <a href="/" class="flex items-center gap-2.5 group">
+            <a href="<?= site_url('/') ?>" class="flex items-center gap-2.5 group">
                 <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-teal-600 to-emerald-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v18l7-3 7 3V3H5z"/></svg>
                 </div>

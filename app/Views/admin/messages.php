@@ -20,9 +20,9 @@
             </div>
             <div class="flex gap-2 flex-shrink-0">
                 <?php if (!$m['is_read']): ?>
-                <a href="/admin/pesan/baca/<?= $m['id'] ?>" class="text-xs text-primary hover:underline">Tandai Dibaca</a>
+                <a href="<?= site_url('admin/pesan/baca/' . $m['id']) ?>" class="text-xs text-primary hover:underline">Tandai Dibaca</a>
                 <?php endif; ?>
-                <form action="/admin/pesan/hapus/<?= $m['id'] ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-xs text-red-500 hover:underline">Hapus</button></form>
+                <form action="<?= site_url('admin/pesan/hapus/' . $m['id']) ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-xs text-red-500 hover:underline">Hapus</button></form>
             </div>
         </div>
     </div>

@@ -32,13 +32,13 @@ class Budgets extends BaseController
             'type' => sanitize_input($this->request->getPost('type')),
             'description' => sanitize_input($this->request->getPost('description')) ?: null,
         ]);
-        return redirect()->to('/admin/anggaran')->with('success', 'Anggaran berhasil ditambahkan');
+        return redirect()->to(site_url('admin/anggaran'))->with('success', 'Anggaran berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['budget'] = $this->model->find($id);
-        if (!$data['budget']) return redirect()->to('/admin/anggaran')->with('error', 'Data tidak ditemukan');
+        if (!$data['budget']) return redirect()->to(site_url('admin/anggaran'))->with('error', 'Data tidak ditemukan');
         return view('admin/budgets_form', $data);
     }
 
@@ -51,12 +51,12 @@ class Budgets extends BaseController
             'type' => sanitize_input($this->request->getPost('type')),
             'description' => sanitize_input($this->request->getPost('description')) ?: null,
         ]);
-        return redirect()->to('/admin/anggaran')->with('success', 'Anggaran berhasil diperbarui');
+        return redirect()->to(site_url('admin/anggaran'))->with('success', 'Anggaran berhasil diperbarui');
     }
 
     public function delete(string $id)
     {
         $this->model->delete($id);
-        return redirect()->to('/admin/anggaran')->with('success', 'Anggaran berhasil dihapus');
+        return redirect()->to(site_url('admin/anggaran'))->with('success', 'Anggaran berhasil dihapus');
     }
 }

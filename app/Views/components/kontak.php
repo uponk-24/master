@@ -52,7 +52,7 @@
                 </div>
 
                 <!-- Contact Form -->
-                <form action="/kontak/kirim" method="POST" class="bg-gray-50 rounded-2xl p-6">
+                <form action="<?= site_url('kontak/kirim') ?>" method="POST" class="bg-gray-50 rounded-2xl p-6">
                     <h3 class="font-bold mb-4">Kirim Pesan</h3>
                     <?= csrf_field() ?>
                     <?= alert_message() ?>

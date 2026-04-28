@@ -21,8 +21,8 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="/css/custom.css">
-    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="<?= base_url('css/custom.css') ?>">
+    <link rel="icon" href="<?= base_url('img/logo.svg') ?>" type="image/svg+xml">
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased scroll-smooth">
 
@@ -43,6 +43,6 @@
 
 <?= $this->include('components/footer') ?>
 
-<script src="/js/app.js"></script>
+<script src="<?= base_url('js/app.js') ?>"></script>
 </body>
 </html>

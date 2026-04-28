@@ -34,20 +34,20 @@ class Infrastructures extends BaseController
         ];
 
         $this->model->insert($data);
-        return redirect()->to('/admin/infrastruktur')->with('success', 'Data infrastruktur berhasil ditambahkan');
+        return redirect()->to(site_url('admin/infrastruktur'))->with('success', 'Data infrastruktur berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['infrastructure'] = $this->model->find($id);
-        if (!$data['infrastructure']) return redirect()->to('/admin/infrastruktur')->with('error', 'Data tidak ditemukan');
+        if (!$data['infrastructure']) return redirect()->to(site_url('admin/infrastruktur'))->with('error', 'Data tidak ditemukan');
         return view('admin/infrastructures_form', $data);
     }
 
     public function update(string $id)
     {
         $infrastructure = $this->model->find($id);
-        if (!$infrastructure) return redirect()->to('/admin/infrastruktur')->with('error', 'Data tidak ditemukan');
+        if (!$infrastructure) return redirect()->to(site_url('admin/infrastruktur'))->with('error', 'Data tidak ditemukan');
 
         $data = [
             'name'      => sanitize_input($this->request->getPost('name')),
@@ -58,12 +58,12 @@ class Infrastructures extends BaseController
         ];
 
         $this->model->update($id, $data);
-        return redirect()->to('/admin/infrastruktur')->with('success', 'Data infrastruktur berhasil diperbarui');
+        return redirect()->to(site_url('admin/infrastruktur'))->with('success', 'Data infrastruktur berhasil diperbarui');
     }
 
     public function delete(string $id)
     {
         $this->model->delete($id);
-        return redirect()->to('/admin/infrastruktur')->with('success', 'Data infrastruktur berhasil dihapus');
+        return redirect()->to(site_url('admin/infrastruktur'))->with('success', 'Data infrastruktur berhasil dihapus');
     }
 }

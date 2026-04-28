@@ -60,7 +60,7 @@ class Home extends BaseController
     {
         $rules = ['name'=>'required|min_length[2]', 'email'=>'required|valid_email', 'message'=>'required|min_length[5]'];
         if (!$this->validate($rules)) {
-            return redirect()->to('/#kontak')->withInput()->with('error', 'Mohon lengkapi form dengan benar');
+            return redirect()->to(site_url('/') . '#kontak')->withInput()->with('error', 'Mohon lengkapi form dengan benar');
         }
 
         (new ContactMessageModel())->insert([
@@ -71,6 +71,6 @@ class Home extends BaseController
             'is_read' => 0,
         ]);
 
-        return redirect()->to('/#kontak')->with('success', 'Pesan berhasil dikirim! Terima kasih.');
+        return redirect()->to(site_url('/') . '#kontak')->with('success', 'Pesan berhasil dikirim! Terima kasih.');
     }
 }

@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Infrastruktur</h1>
-    <a href="/admin/infrastruktur/tambah" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
+    <a href="<?= site_url('admin/infrastruktur/tambah') ?>" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
 </div>
 <?= alert_message() ?>
 <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
@@ -40,8 +40,8 @@
                         <span class="px-2 py-0.5 rounded-full text-xs font-medium <?= $condClass ?>"><?= esc($inf['condition']) ?></span>
                     </td>
                     <td class="px-4 py-3 text-right">
-                        <a href="/admin/infrastruktur/edit/<?= $inf['id'] ?>" class="text-primary hover:underline text-sm mr-3">Edit</a>
-                        <form action="/admin/infrastruktur/hapus/<?= $inf['id'] ?>" method="POST" class="inline" onsubmit="return confirm('Hapus data ini?')">
+                        <a href="<?= site_url('admin/infrastruktur/edit/' . $inf['id']) ?>" class="text-primary hover:underline text-sm mr-3">Edit</a>
+                        <form action="<?= site_url('admin/infrastruktur/hapus/' . $inf['id']) ?>" method="POST" class="inline" onsubmit="return confirm('Hapus data ini?')">
                             <?= csrf_field() ?>
                             <button type="submit" class="text-red-500 hover:underline text-sm">Hapus</button>
                         </form>

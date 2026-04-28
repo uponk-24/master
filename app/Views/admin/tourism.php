@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Potensi Wisata</h1>
-    <a href="/admin/wisata/tambah" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
+    <a href="<?= site_url('admin/wisata/tambah') ?>" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
 </div>
 <?= alert_message() ?>
 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -20,8 +20,8 @@
             <h4 class="font-bold text-sm"><?= esc($s['name']) ?></h4>
             <p class="text-xs text-gray-500 mt-1"><?= esc($s['location']) ?></p>
             <div class="flex gap-2 mt-3">
-                <a href="/admin/wisata/edit/<?= $s['id'] ?>" class="text-primary hover:underline text-xs">Edit</a>
-                <form action="/admin/wisata/hapus/<?= $s['id'] ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-red-500 hover:underline text-xs">Hapus</button></form>
+                <a href="<?= site_url('admin/wisata/edit/' . $s['id']) ?>" class="text-primary hover:underline text-xs">Edit</a>
+                <form action="<?= site_url('admin/wisata/hapus/' . $s['id']) ?>" method="POST" class="inline" onsubmit="return confirm('Hapus?')"><?= csrf_field() ?><button type="submit" class="text-red-500 hover:underline text-xs">Hapus</button></form>
             </div>
         </div>
     </div>

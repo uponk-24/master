@@ -9,7 +9,7 @@
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <?php foreach ($news as $article): ?>
-            <a href="/berita/<?= $article['id'] ?>" class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+            <a href="<?= site_url('berita/' . $article['id']) ?>" class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                 <div class="h-44 bg-gradient-to-br from-teal-50 via-emerald-50 to-cyan-50 relative overflow-hidden">
                     <?php if (!empty($article['image_url'])): ?>
                     <img src="<?= image_url($article['image_url']) ?>" alt="<?= esc($article['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">

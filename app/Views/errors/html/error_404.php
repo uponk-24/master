@@ -19,7 +19,7 @@
         <h1>404</h1>
         <h2>Halaman Tidak Ditemukan</h2>
         <p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
-        <a href="/">← Kembali ke Beranda</a>
+        <a href="<?= site_url('/') ?>">← Kembali ke Beranda</a>
     </div>
 </body>
 </html>

@@ -53,20 +53,20 @@ class Population extends BaseController
         ];
 
         $this->model->insert($data);
-        return redirect()->to('/admin/kependudukan')->with('success', 'Data kependudukan berhasil ditambahkan');
+        return redirect()->to(site_url('admin/kependudukan'))->with('success', 'Data kependudukan berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['population'] = $this->model->find($id);
-        if (!$data['population']) return redirect()->to('/admin/kependudukan')->with('error', 'Data tidak ditemukan');
+        if (!$data['population']) return redirect()->to(site_url('admin/kependudukan'))->with('error', 'Data tidak ditemukan');
         return view('admin/population_form', $data);
     }
 
     public function update(string $id)
     {
         $stat = $this->model->find($id);
-        if (!$stat) return redirect()->to('/admin/kependudukan')->with('error', 'Data tidak ditemukan');
+        if (!$stat) return redirect()->to(site_url('admin/kependudukan'))->with('error', 'Data tidak ditemukan');
 
         $data = [
             'category'     => sanitize_input($this->request->getPost('category')),
@@ -76,12 +76,12 @@ class Population extends BaseController
         ];
 
         $this->model->update($id, $data);
-        return redirect()->to('/admin/kependudukan')->with('success', 'Data kependudukan berhasil diperbarui');
+        return redirect()->to(site_url('admin/kependudukan'))->with('success', 'Data kependudukan berhasil diperbarui');
     }
 
     public function delete(string $id)
     {
         $this->model->delete($id);
-        return redirect()->to('/admin/kependudukan')->with('success', 'Data kependudukan berhasil dihapus');
+        return redirect()->to(site_url('admin/kependudukan'))->with('success', 'Data kependudukan berhasil dihapus');
     }
 }

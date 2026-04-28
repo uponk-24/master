@@ -26,23 +26,23 @@ class Settings extends BaseController
 
         // Validate inputs
         if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
-            return redirect()->to('/admin/pengaturan')->with('error', 'Semua field harus diisi');
+            return redirect()->to(site_url('admin/pengaturan'))->with('error', 'Semua field harus diisi');
         }
 
         // Verify current password
         $admin = $this->model->find($adminId);
         if (!$admin || !password_verify($currentPassword, $admin['password'])) {
-            return redirect()->to('/admin/pengaturan')->with('error', 'Password saat ini salah');
+            return redirect()->to(site_url('admin/pengaturan'))->with('error', 'Password saat ini salah');
         }
 
         // Confirm new password
         if ($newPassword !== $confirmPassword) {
-            return redirect()->to('/admin/pengaturan')->with('error', 'Konfirmasi password tidak cocok');
+            return redirect()->to(site_url('admin/pengaturan'))->with('error', 'Konfirmasi password tidak cocok');
         }
 
         // Minimum length
         if (strlen($newPassword) < 6) {
-            return redirect()->to('/admin/pengaturan')->with('error', 'Password baru minimal 6 karakter');
+            return redirect()->to(site_url('admin/pengaturan'))->with('error', 'Password baru minimal 6 karakter');
         }
 
         // Update password
@@ -50,6 +50,6 @@ class Settings extends BaseController
             'password' => password_hash($newPassword, PASSWORD_DEFAULT),
         ]);
 
-        return redirect()->to('/admin/pengaturan')->with('success', 'Password berhasil diubah');
+        return redirect()->to(site_url('admin/pengaturan'))->with('success', 'Password berhasil diubah');
     }
 }

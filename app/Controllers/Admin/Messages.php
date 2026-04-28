@@ -20,12 +20,12 @@ class Messages extends BaseController
     public function markRead(string $id)
     {
         $this->model->update($id, ['is_read' => 1]);
-        return redirect()->to('/admin/pesan')->with('success', 'Pesan ditandai sudah dibaca');
+        return redirect()->to(site_url('admin/pesan'))->with('success', 'Pesan ditandai sudah dibaca');
     }
 
     public function delete(string $id)
     {
         $this->model->delete($id);
-        return redirect()->to('/admin/pesan')->with('success', 'Pesan berhasil dihapus');
+        return redirect()->to(site_url('admin/pesan'))->with('success', 'Pesan berhasil dihapus');
     }
 }

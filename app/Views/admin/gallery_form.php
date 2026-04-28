@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="mb-6"><h1 class="text-2xl font-bold"><?= $item ? 'Edit' : 'Tambah' ?> Galeri</h1></div>
 <?= alert_message() ?>
-<form action="<?= $item ? '/admin/galeri/update/'.$item['id'] : '/admin/galeri/simpan' ?>" method="POST" enctype="multipart/form-data" class="bg-white rounded-2xl shadow-sm border p-6 space-y-4">
+<form action="<?= $item ? site_url('admin/galeri/update/'.$item['id']) : site_url('admin/galeri/simpan') ?>" method="POST" enctype="multipart/form-data" class="bg-white rounded-2xl shadow-sm border p-6 space-y-4">
     <?= csrf_field() ?>
     <div class="grid sm:grid-cols-2 gap-4">
         <div><label class="block text-sm font-medium mb-1">Judul Foto</label>
@@ -19,7 +19,7 @@
     <?php endif; ?>
     <div class="flex gap-3 pt-2">
         <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl font-medium transition-colors">Simpan</button>
-        <a href="/admin/galeri" class="px-6 py-2.5 rounded-xl border hover:bg-gray-50 text-sm font-medium">Batal</a>
+        <a href="<?= site_url('admin/galeri') ?>" class="px-6 py-2.5 rounded-xl border hover:bg-gray-50 text-sm font-medium">Batal</a>
     </div>
 </form>
 <?= $this->endSection() ?>

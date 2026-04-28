@@ -18,7 +18,7 @@ class Profile extends BaseController
     {
         $model = new VillageProfileModel();
         $profile = $model->getProfile();
-        if (!$profile) return redirect()->to('/admin/profil')->with('error', 'Profil desa belum ada');
+        if (!$profile) return redirect()->to(site_url('admin/profil'))->with('error', 'Profil desa belum ada');
 
         $data = [
             'name' => sanitize_input($this->request->getPost('name')),
@@ -53,6 +53,6 @@ class Profile extends BaseController
         }
 
         $model->update($profile['id'], $data);
-        return redirect()->to('/admin/profil')->with('success', 'Profil desa berhasil diperbarui');
+        return redirect()->to(site_url('admin/profil'))->with('success', 'Profil desa berhasil diperbarui');
     }
 }

@@ -41,20 +41,20 @@ class Tourism extends BaseController
         }
 
         $this->model->insert($data);
-        return redirect()->to('/admin/wisata')->with('success', 'Wisata berhasil ditambahkan');
+        return redirect()->to(site_url('admin/wisata'))->with('success', 'Wisata berhasil ditambahkan');
     }
 
     public function edit(string $id)
     {
         $data['spot'] = $this->model->find($id);
-        if (!$data['spot']) return redirect()->to('/admin/wisata')->with('error', 'Data tidak ditemukan');
+        if (!$data['spot']) return redirect()->to(site_url('admin/wisata'))->with('error', 'Data tidak ditemukan');
         return view('admin/tourism_form', $data);
     }
 
     public function update(string $id)
     {
         $spot = $this->model->find($id);
-        if (!$spot) return redirect()->to('/admin/wisata')->with('error', 'Data tidak ditemukan');
+        if (!$spot) return redirect()->to(site_url('admin/wisata'))->with('error', 'Data tidak ditemukan');
 
         $data = [
             'name' => sanitize_input($this->request->getPost('name')),
@@ -74,7 +74,7 @@ class Tourism extends BaseController
         }
 
         $this->model->update($id, $data);
-        return redirect()->to('/admin/wisata')->with('success', 'Wisata berhasil diperbarui');
+        return redirect()->to(site_url('admin/wisata'))->with('success', 'Wisata berhasil diperbarui');
     }
 
     public function delete(string $id)
@@ -82,6 +82,6 @@ class Tourism extends BaseController
         $spot = $this->model->find($id);
         if ($spot && !empty($spot['image_url'])) delete_file($spot['image_url']);
         $this->model->delete($id);
-        return redirect()->to('/admin/wisata')->with('success', 'Wisata berhasil dihapus');
+        return redirect()->to(site_url('admin/wisata'))->with('success', 'Wisata berhasil dihapus');
     }
 }

@@ -6,8 +6,8 @@
     <title>Login Admin - Website Desa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { primary: '#059669', 'primary-dark': '#047857', 'primary-light': '#d1fae5' } } } }</script>
-    <link rel="stylesheet" href="/css/custom.css">
-    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="<?= base_url('css/custom.css') ?>">
+    <link rel="icon" href="<?= base_url('img/logo.svg') ?>" type="image/svg+xml">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-emerald-900 flex items-center justify-center p-4 relative overflow-hidden">
     <!-- Background decorative elements -->
@@ -30,7 +30,7 @@
 
             <?= alert_message() ?>
 
-            <form action="/admin/login" method="POST" class="space-y-5">
+            <form action="<?= site_url('admin/login') ?>" method="POST" class="space-y-5">
                 <?= csrf_field() ?>
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
@@ -61,7 +61,7 @@
             </form>
 
             <div class="mt-6 text-center">
-                <a href="/" class="text-sm text-gray-500 hover:text-primary transition-colors inline-flex items-center gap-1">
+                <a href="<?= site_url('/') ?>" class="text-sm text-gray-500 hover:text-primary transition-colors inline-flex items-center gap-1">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                     Kembali ke Website
                 </a>

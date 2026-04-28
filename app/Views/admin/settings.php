@@ -6,7 +6,7 @@
 <div class="max-w-lg">
     <div class="bg-white rounded-2xl shadow-sm border p-6">
         <h3 class="font-bold text-lg mb-4">Ubah Password</h3>
-        <form action="/admin/pengaturan/password" method="POST">
+        <form action="<?= site_url('admin/pengaturan/password') ?>" method="POST">
             <?= csrf_field() ?>
             <div class="space-y-4">
                 <div>

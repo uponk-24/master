@@ -8,7 +8,7 @@
 <?= alert_message() ?>
 
 <?php $p = $profile ?? []; ?>
-<form action="/admin/profil/update" method="POST" enctype="multipart/form-data" class="space-y-6">
+<form action="<?= site_url('admin/profil/update') ?>" method="POST" enctype="multipart/form-data" class="space-y-6">
     <?= csrf_field() ?>
 
     <!-- Basic Info -->

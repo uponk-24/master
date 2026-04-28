@@ -78,7 +78,7 @@
             <p class="text-2xl font-bold text-gray-900"><?= format_rupiah((float)$budgetTotal) ?></p>
         </div>
     </div>
-    <a href="/admin/anggaran" class="text-sm text-indigo-600 font-medium hover:underline">Lihat Detail Anggaran &rarr;</a>
+    <a href="<?= site_url('admin/anggaran') ?>" class="text-sm text-indigo-600 font-medium hover:underline">Lihat Detail Anggaran &rarr;</a>
 </div>
 
 <!-- Recent Messages -->
@@ -86,7 +86,7 @@
 <div class="bg-white rounded-2xl shadow-sm border p-6">
     <div class="flex items-center justify-between mb-4">
         <h3 class="font-bold">Pesan Terbaru</h3>
-        <a href="/admin/pesan" class="text-sm text-primary font-medium hover:underline">Lihat Semua &rarr;</a>
+        <a href="<?= site_url('admin/pesan') ?>" class="text-sm text-primary font-medium hover:underline">Lihat Semua &rarr;</a>
     </div>
     <div class="space-y-3">
         <?php foreach ($recentMessages as $msg): ?>

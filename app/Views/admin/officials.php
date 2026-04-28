@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-bold">Perangkat Desa</h1>
-    <a href="/admin/perangkat/tambah" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
+    <a href="<?= site_url('admin/perangkat/tambah') ?>" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">+ Tambah</a>
 </div>
 <?= alert_message() ?>
 <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
@@ -25,8 +25,8 @@
                     <td class="px-4 py-3 text-gray-500"><?= esc($o['nip'] ?? '-') ?></td>
                     <td class="px-4 py-3"><?= $o['order_num'] ?></td>
                     <td class="px-4 py-3 text-right">
-                        <a href="/admin/perangkat/edit/<?= $o['id'] ?>" class="text-primary hover:underline text-sm mr-3">Edit</a>
-                        <form action="/admin/perangkat/hapus/<?= $o['id'] ?>" method="POST" class="inline" onsubmit="return confirm('Hapus data ini?')">
+                        <a href="<?= site_url('admin/perangkat/edit/' . $o['id']) ?>" class="text-primary hover:underline text-sm mr-3">Edit</a>
+                        <form action="<?= site_url('admin/perangkat/hapus/' . $o['id']) ?>" method="POST" class="inline" onsubmit="return confirm('Hapus data ini?')">
                             <?= csrf_field() ?>
                             <button type="submit" class="text-red-500 hover:underline text-sm">Hapus</button>
                         </form>
