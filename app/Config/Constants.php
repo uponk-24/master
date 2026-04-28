@@ -27,6 +27,45 @@ defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.
 
 /*
  |--------------------------------------------------------------------------
+ | Locale Polyfill
+ |--------------------------------------------------------------------------
+ |
+ | CI4 requires the PHP intl extension (Locale class). If the extension
+ | is not loaded, we provide a simple polyfill so the app can still run.
+ | For full i18n support, enable the intl extension in php.ini.
+ */
+if (! class_exists('Locale', false)) {
+    class Locale
+    {
+        private static string $default = 'en';
+
+        public static function setDefault(string $locale): bool
+        {
+            self::$default = $locale;
+            return true;
+        }
+
+        public static function getDefault(): string
+        {
+            return self::$default;
+        }
+
+        public static function getPrimaryLanguage(string $locale): ?string
+        {
+            $parts = explode('_', $locale);
+            return $parts[0] ?? null;
+        }
+
+        public static function getRegion(string $locale): ?string
+        {
+            $parts = explode('_', $locale);
+            return $parts[1] ?? null;
+        }
+    }
+}
+
+/*
+ |--------------------------------------------------------------------------
  | Timing Constants
  |--------------------------------------------------------------------------
  |
