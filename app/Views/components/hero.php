@@ -1,10 +1,20 @@
 <!-- Hero Section -->
-<section id="beranda" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900 to-emerald-900">
-    <!-- Animated gradient overlay -->
-    <div class="absolute inset-0 animate-gradient bg-gradient-to-br from-slate-900/50 via-teal-800/30 to-emerald-900/50"></div>
+<section id="beranda" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <?php $heroImage = !empty($village['hero_image']) ? image_url($village['hero_image']) : ''; ?>
 
-    <!-- Background pattern -->
+    <?php if ($heroImage): ?>
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="<?= esc($heroImage) ?>" alt="<?= esc($village['name'] ?? 'Desa') ?>" class="w-full h-full object-cover">
+    </div>
+    <!-- Dark overlay agar teks terbaca -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+    <?php else: ?>
+    <!-- Fallback gradient jika belum ada gambar -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-teal-900 to-emerald-900"></div>
+    <div class="absolute inset-0 animate-gradient bg-gradient-to-br from-slate-900/50 via-teal-800/30 to-emerald-900/50"></div>
     <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23ffffff%27 fill-opacity=%270.4%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
+    <?php endif; ?>
 
     <!-- Decorative blurs -->
     <div class="absolute top-20 left-10 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl"></div>

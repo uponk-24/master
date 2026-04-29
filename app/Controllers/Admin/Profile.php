@@ -52,6 +52,15 @@ class Profile extends BaseController
             }
         }
 
+        $heroImage = $this->request->getFile('hero_image');
+        if ($heroImage && $heroImage->isValid()) {
+            $heroPath = upload_file($heroImage, 'village/');
+            if ($heroPath) {
+                if (!empty($profile['hero_image'])) delete_file($profile['hero_image']);
+                $data['hero_image'] = $heroPath;
+            }
+        }
+
         $model->update($profile['id'], $data);
         return redirect()->to(site_url('admin/profil'))->with('success', 'Profil desa berhasil diperbarui');
     }

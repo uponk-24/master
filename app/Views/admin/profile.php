@@ -119,6 +119,21 @@
             <div>
                 <label class="block text-sm font-medium mb-1">Logo</label>
                 <input type="file" name="logo" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                <?php if (!empty($p['logo_url'])): ?>
+                    <p class="text-xs text-gray-400 mt-1">Logo saat ini: <?= esc($p['logo_url']) ?></p>
+                <?php endif; ?>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">Foto Background Beranda</label>
+                <input type="file" name="hero_image" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                <?php if (!empty($p['hero_image'])): ?>
+                    <div class="mt-2">
+                        <img src="<?= image_url($p['hero_image']) ?>" alt="Hero" class="w-full h-32 object-cover rounded-lg border">
+                        <p class="text-xs text-gray-400 mt-1">Kosongkan jika tidak ingin mengubah</p>
+                    </div>
+                <?php else: ?>
+                    <p class="text-xs text-gray-400 mt-1">Upload foto desa untuk background beranda (ukuran disarankan 1920x1080)</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>

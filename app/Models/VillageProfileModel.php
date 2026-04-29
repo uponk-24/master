@@ -14,7 +14,7 @@ class VillageProfileModel extends Model
         'id','name','motto','description','history','vision','mission',
         'area_size','population','family_count','hamlets','district','regency',
         'province','phone','email','address','postal_code','latitude','longitude',
-        'logo_url','service_hours'
+        'logo_url','hero_image','service_hours'
     ];
 
     public function getProfile(): ?array
