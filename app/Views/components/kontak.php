@@ -75,10 +75,65 @@
             </div>
 
             <!-- Map -->
-            <div class="rounded-2xl overflow-hidden shadow-md h-[400px] lg:h-auto">
-                <?php $lat = $village['latitude'] ?? '-3.8654'; $lng = $village['longitude'] ?? '102.2568'; ?>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15000!2d<?= $lng ?>!3d<?= $lat ?>!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwNTEnNTUuNSJTIDEwMsKwMTUnMjQuNSJF!5e0!3m2!1sid!2sid!4v1" width="100%" height="100%" style="border:0;min-height:400px" allowfullscreen="" loading="lazy"></iframe>
+            <?php
+                $lat = !empty($village['latitude']) ? $village['latitude'] : '-3.8654';
+                $lng = !empty($village['longitude']) ? $village['longitude'] : '102.2568';
+                $villageName = esc($village['name'] ?? 'Desa');
+            ?>
+            <div class="space-y-3">
+                <div class="rounded-2xl overflow-hidden shadow-md h-[400px] lg:h-[500px]">
+                    <div id="village-map" class="w-full h-full" data-lat="<?= esc($lat) ?>" data-lng="<?= esc($lng) ?>" data-name="<?= $villageName ?>"></div>
+                </div>
+                <a href="https://www.google.com/maps/search/<?= urlencode($villageName) ?>/@<?= esc($lat) ?>,<?= esc($lng) ?>,15z" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    Buka di Google Maps
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var mapEl = document.getElementById('village-map');
+    if (!mapEl) return;
+
+    var lat = parseFloat(mapEl.dataset.lat) || -3.8654;
+    var lng = parseFloat(mapEl.dataset.lng) || 102.2568;
+    var name = mapEl.dataset.name || 'Desa';
+
+    var map = L.map('village-map', {
+        scrollWheelZoom: false,
+        zoomControl: true
+    }).setView([lat, lng], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19
+    }).addTo(map);
+
+    // Custom marker icon
+    var markerIcon = L.divIcon({
+        html: '<div style="background:linear-gradient(135deg,#0d9488,#059669);width:36px;height:36px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(13,148,136,0.4);border:3px solid white;"><svg style="transform:rotate(45deg);width:18px;height:18px;" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>',
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -36],
+        className: ''
+    });
+
+    var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+    marker.bindPopup(
+        '<div style="text-align:center;padding:4px 8px;">' +
+        '<strong style="font-size:14px;color:#0d9488;">' + name + '</strong><br>' +
+        '<span style="font-size:12px;color:#666;">' + lat.toFixed(4) + ', ' + lng.toFixed(4) + '</span>' +
+        '</div>'
+    ).openPopup();
+
+    // Fix map rendering after lazy load
+    setTimeout(function() { map.invalidateSize(); }, 300);
+});
+</script>
