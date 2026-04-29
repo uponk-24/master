@@ -197,8 +197,9 @@ CREATE TABLE IF NOT EXISTS `contact_messages` (
 
 -- Admin: username=admin, password=admin123
 -- Password di-hash dengan bcrypt. Jalankan /setup jika ingin membuat ulang.
+-- CATATAN: Jika import ulang, hapus tabel admins dulu agar INSERT IGNORE tidak skip
 INSERT IGNORE INTO `admins` (`id`, `username`, `password`, `name`) VALUES
-('admin-1', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator Desa');
+('admin-1', 'admin', '$2b$10$3Ox7.twNIUJ5gFGkhygBueCD1PbLmJTsta1G1NGDUxGw475gsrUpq', 'Administrator Desa');
 
 -- Profil Desa
 INSERT IGNORE INTO `village_profiles` (`id`, `name`, `motto`, `description`, `history`, `vision`, `mission`, `area_size`, `population`, `family_count`, `hamlets`, `district`, `regency`, `province`, `phone`, `email`, `address`, `postal_code`, `latitude`, `longitude`, `logo_url`) VALUES

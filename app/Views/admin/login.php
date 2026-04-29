@@ -67,12 +67,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- Footer info -->
-        <div class="mt-6 text-center">
-            <p class="text-xs text-white/30">Default: admin / admin123</p>
-            <p class="text-xs text-white/20 mt-1">Ubah password setelah login pertama</p>
-        </div>
     </div>
 
     <script>

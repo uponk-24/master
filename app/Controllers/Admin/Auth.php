@@ -15,23 +15,37 @@ class Auth extends BaseController
 
     public function doLogin()
     {
-        if (!$this->validate(['username'=>'required', 'password'=>'required'])) {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        if (empty($username) || empty($password)) {
             return redirect()->back()->withInput()->with('error', 'Username dan password wajib diisi');
         }
 
-        $model = new AdminModel();
-        $admin = $model->verifyLogin($this->request->getPost('username'), $this->request->getPost('password'));
+        try {
+            $model = new AdminModel();
+            $admin = $model->where('username', $username)->first();
 
-        if ($admin) {
+            if (!$admin) {
+                return redirect()->back()->withInput()->with('error', 'Username atau password salah');
+            }
+
+            if (!password_verify($password, $admin['password'])) {
+                return redirect()->back()->withInput()->with('error', 'Username atau password salah');
+            }
+
             session()->set([
                 'admin_logged_in' => true,
                 'admin_id'       => $admin['id'],
                 'admin_name'     => $admin['name'],
             ]);
-            return redirect()->to(site_url('admin/dashboard'))->with('success', 'Selamat datang, ' . $admin['name']);
-        }
 
-        return redirect()->back()->withInput()->with('error', 'Username atau password salah');
+            return redirect()->to(site_url('admin/dashboard'))->with('success', 'Selamat datang, ' . $admin['name']);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Login error: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan sistem. Silakan coba lagi.');
+        }
     }
 
     public function logout()

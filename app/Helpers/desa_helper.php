@@ -70,9 +70,9 @@ if (!function_exists('delete_file')) {
 if (!function_exists('image_url')) {
     function image_url(?string $path, string $default = '/img/no-image.svg'): string
     {
-        if (empty($path)) return $default;
+        if (empty($path)) return base_url(ltrim($default, '/'));
         if (str_starts_with($path, 'http')) return $path;
-        return '/' . ltrim($path, '/');
+        return base_url(ltrim($path, '/'));
     }
 }
 
